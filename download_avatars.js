@@ -1,10 +1,14 @@
+require('dotenv').config()
+
 var request = require('request');
 var fs = require('fs');
-var GITHUB_USER = "tomsecret";
-var GITHUB_TOKEN = "f62bd4c81efa5bf75f268e42c43d41c78eb6a030";
+var GITHUB_USER = process.env.DB_USER;
+var GITHUB_TOKEN = process.env.DB_TOKEN;
 var owner = process.argv.slice(2)[0]
 var repo = process.argv.slice(2)[1]
 
+// console.log(GITHUB_USER);
+// console.log(GITHUB_TOKEN);
 
 function getRepoContributors(repoOwner, repoName, cb) {
   // ...
