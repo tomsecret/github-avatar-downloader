@@ -10,15 +10,22 @@ var repo = process.argv.slice(2)[1]
 // console.log(GITHUB_USER);
 // console.log(GITHUB_TOKEN);
 
+/////check if path exists/////
+
+
 function getRepoContributors(repoOwner, repoName, cb) {
   // ...
+  if (!repoOwner || ! repoName) {
+    console.log('error')
+  } else {
   var requestURL = 'https://'+ GITHUB_USER + ':' + GITHUB_TOKEN + '@api.github.com/repos/' + repoOwner + '/' + repoName + '/contributors';
   var option = {
     url: requestURL,
     headers: {'user-agent': 'something'}
   }
   request(option, cb)
-}
+}}
+
 
 function downloadImageByURL(url, filePath) {
   // ...
@@ -41,3 +48,6 @@ getRepoContributors(owner, repo, function(err, result, body) {
     downloadImageByURL(JSON.parse(body)[i].avatar_url, path)
   }
 });
+
+
+
